@@ -38,6 +38,7 @@ int push(TP_PILHA * pointerPilha, int value){
 		pointerPilha->item[pointerPilha->topo] = value;
 	}
 }
+/* Esse é a forma errado de imprimir um pilha, pois não se adequa a lógica de desempilhar um pilha
 void listaPilha(TP_PILHA pointerPilha){
 	if(pointerPilha.topo == -1){
 		printf("Is empty!\n");
@@ -46,16 +47,18 @@ void listaPilha(TP_PILHA pointerPilha){
 			printf("[ %d ] = %d\n",pointerPilha.topo + 1, pointerPilha.item[pointerPilha.topo]);
 			pointerPilha.topo--;
 		}	
-	}
-	
+	}	
 }
-int pop(TP_PILHA * pointerPilha){
+*/
+int pop(TP_PILHA * pointerPilha, tp_item * e){
 	if(isEmpty(pointerPilha) == 1){
 		printf("Is empty\n!");
 		return 0;
 	}else{
+		*e = pointerPilha->item[pointerPilha->topo];
 		pointerPilha->topo--;
 		printf("Remove item...: %d\n", pointerPilha->topo);
+		
 		return 1;
 	}
 }
@@ -73,6 +76,28 @@ int desempilhaTotal(TP_PILHA * pointerPilha){
 		return 1;
 	}
 }
+
+void imprimirPilha(TP_PILHA pointerPilha){
+	TP_PILHA pilhaAuxiliar;
+	inicializaPilha(&pilhaAuxiliar);
+	tp_item e;
+	
+	while(isEmpty(pointerPilha) > -1){
+		pop(pointerPilha, &e);
+		if(e % 2 == 0){
+			push(pilhaAuxiliar, e);
+		}else{
+			continue;
+		}
+	}
+	
+	while(isEmpty(pilhaAuxiliar) > -1){
+		pop(pilhaAuxiliar, &e);
+		push(pointerPilha, e);
+	}
+	
+}
+
 
 
 
