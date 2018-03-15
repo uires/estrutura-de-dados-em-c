@@ -62,38 +62,45 @@ int pop(TP_PILHA * pointerPilha, tp_item * e){
 		return 1;
 	}
 }
-
+/*
 int desempilhaTotal(TP_PILHA * pointerPilha){
 	if(isEmpty(pointerPilha) == 1){
 		return 0;
 	}else{
 		for( ;pointerPilha->topo > -1 ; ){
-			pop(pointerPilha);
+			pop(pointerPilha, &e);
 			printf("%d \n",pointerPilha->topo);
 			pointerPilha->topo--;
 		}
 		printf("ESC, 1-1\n");		
 		return 1;
 	}
-}
+}*/ 
+/*
+	@uthor uíres
+	date 2018-03-15
+	
+	Essa função recebe uma pilha para retirar todos os elements imparés da pilha,
+	usando o comportamento de pop e push;
+*/
 
-void imprimirPilha(TP_PILHA pointerPilha){
+void retiraImpares(TP_PILHA pointerPilha){
 	TP_PILHA pilhaAuxiliar;
 	inicializaPilha(&pilhaAuxiliar);
 	tp_item e;
 	
-	while(isEmpty(pointerPilha) > -1){
-		pop(pointerPilha, &e);
+	while(isEmpty(&pointerPilha) > -1){
+		pop(&pointerPilha, &e);
 		if(e % 2 == 0){
-			push(pilhaAuxiliar, e);
+			push(&pilhaAuxiliar, e);
 		}else{
 			continue;
 		}
 	}
 	
-	while(isEmpty(pilhaAuxiliar) > -1){
-		pop(pilhaAuxiliar, &e);
-		push(pointerPilha, e);
+	while(isEmpty(&pilhaAuxiliar) > -1){
+		pop(&pilhaAuxiliar, &e);
+		push(&pointerPilha, e);
 	}
 	
 }
