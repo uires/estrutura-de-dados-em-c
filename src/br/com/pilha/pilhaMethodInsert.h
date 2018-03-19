@@ -148,3 +148,24 @@ int comparaPilha(TP_PILHA pointerPilhaUm, TP_PILHA pointerPilhaDois){
 		return 1;		
 	}
 }
+
+void concatenaPilha(TP_PILHA * pointerPilhaUm, TP_PILHA * pointerPilhaDois){
+	if(isEmpty(pointerPilhaUm) || isEmpty(pointerPilhaDois)){
+		printf("Pilhas vázias!\n");
+	}else{
+		TP_PILHA aux;
+		inicializaPilha(&aux);
+		int e;
+		
+		while(!isEmpty(pointerPilhaDois)){
+			pop(pointerPilhaDois, &e);
+			push(&aux, e);
+		}
+		while(!isEmpty(&aux)){
+			pop(&aux, &e);
+			push(pointerPilhaUm, e);
+		}	
+	}
+}
+
+
