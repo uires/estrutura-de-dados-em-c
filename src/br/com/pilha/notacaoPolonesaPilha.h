@@ -11,18 +11,38 @@ void inicializa_pilha(TP_PILHA_CHAR * p){
 	p->topo = -1;
 }
 int pop(TP_PILHA_CHAR * p, int * e){
-	*e = p->item[p->topo];
-	p->topo--;
-	return 1;
+	if(isEmpty(p)){
+		printf("A pilha está vázia!\n");
+	}else{
+		*e = p->item[p->topo];
+		p->topo--;
+		return 1;
+	}
 }
 
-int push(TP_PILHA_CHAR * p, int value){
-	
-	p->topo++;
-	p->item[p->topo] = value;
-	
+int push(TP_PILHA_CHAR * pointerPilha, int value){
+	if(isFull(pointerPilha) == 1){
+		printf("Pilha cheia!\n");
+	}else{
+		p->topo++;
+		p->item[p->topo] = value;
+	}	
 }
-
+int isEmpty(TP_PILHAR_CHAR * pointerPilha){
+	if(pointerPilha->topo == -1){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+int isFull(TP_PILHAR_CHAR  * pointerPilha){
+	if(pointerPilha->topo == MAX - 1){
+		return 1;
+	}else{
+		return 0;
+	}
+		
+}
 
 
 
