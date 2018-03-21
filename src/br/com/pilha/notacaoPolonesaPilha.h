@@ -43,6 +43,14 @@ int isFull(TP_PILHA_CHAR  * pointerPilha){
 	}
 		
 }
+/*
+*	@uthor uíres
+*	date 2018-03-18
+*	
+*	Essa função recebe uma struct como parâmetro e uma string onde deve conter um expressão polonesa Reversa
+*	Com isso a utilização de pilha para empurrar os dados e realizar a lógica de operação polonesa
+*
+*/
 
 
 
@@ -51,7 +59,7 @@ void notacaoPolonesa(TP_PILHA_CHAR * pointerPilha, char string[10]){
 	char e;
 	int x,y;
 	int contador = strlen(string);
-	int convertUm, convertDois, result;
+	int convertUm, result;
 	while(cont < contador){
 		printf("cont = %d, value array char = %c\n", cont, string[cont]);
 		if((string[cont] == '*') || (string[cont] == '/') || (string[cont] == '+') || (string[cont] == '-')){
@@ -60,48 +68,39 @@ void notacaoPolonesa(TP_PILHA_CHAR * pointerPilha, char string[10]){
 			printf("pop = %d -- %d\n", x, y);
 			switch(string[cont]){
 				case '*':
-					convertUm = x - 48;
-					printf("x = %d\n", convertUm);
-					convertDois = y - 48;
-					printf("y = %d\n", convertDois);
-					result = convertUm * convertDois;
+					printf(" valor x e y = %d    %d\n\n",x, y );
+					result = x * y;
 					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '/':
-					convertUm = x - 48;
-					printf("x = %d\n", convertUm);
-					convertDois = y - 48;
-					printf("y = %d\n", convertDois);
-					result = convertUm / convertDois;
+					printf(" valor x e y = %d    %d\n\n",x, y );
+					result = x / y;
 					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '+':
-					convertUm = x - 48;
-					printf("x = %d\n", convertUm);
-					convertDois = y - 48;
-					printf("y = %d\n", convertDois);
-					result = convertUm + convertDois;
+					printf(" valor x e y = %d    %d\n\n",x, y );
+					result = x  + y;
 					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '-':
-					convertUm = x - 48;
-					printf("x = %d\n", convertUm);
-					convertDois = y - 48;
-					printf("y = %d\n", convertDois);	
-					result = convertUm - convertDois;
+					printf(" valor x e y = %d    %d\n\n",x, y );
+					result = x - y;
 					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					break;					
 			}
 		}else{
 			e = string[cont];
-			push(pointerPilha, e);			
+			
+			convertUm = (int) e - 48;
+			printf(" Valor convertido...: %d\n", convertUm);
+			push(pointerPilha, convertUm);			
 		}
 		cont++;
 	}

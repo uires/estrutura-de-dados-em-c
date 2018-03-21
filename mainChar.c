@@ -2,6 +2,12 @@
 #include <string.h>
 #include "src/br/com/pilha/notacaoPolonesaPilha.h"
 
+/*
+*	@uthor uíres
+*	date 2018-03-18
+*
+*
+*/
 
 int main(){
 	char string [10] = "81-2*1+";
