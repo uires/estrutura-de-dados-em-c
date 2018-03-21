@@ -1,5 +1,16 @@
 #define MAX 10
 
+/*
+
+
+	@uthor uíres
+	2018-03-21  15:09
+
+
+*/
+
+
+
 typedef char char_tipo;
 
 typedef struct{
