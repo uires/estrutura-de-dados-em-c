@@ -15,6 +15,10 @@ typedef struct{
 	int fim;
 }TP_FILA;
 
+void posicioesFilaIniFim(TP_FILA fila){
+	printf("Inicio = %d\nFim = %d\n", fila.ini, fila.fim);
+}
+
 /*
 *	
 *
@@ -45,7 +49,7 @@ int proximo(int posicao){
 	if(posicao == MAX - 1){
 		return 0;
 	}else{
-		return posicao++;
+		return posicao + 1;
 	}
 }
 /*
