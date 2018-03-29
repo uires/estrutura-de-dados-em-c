@@ -38,7 +38,7 @@ int push(TP_PILHA * pointerPilha, int value){
 		pointerPilha->item[pointerPilha->topo] = value;
 	}
 }
-/* Esse é a forma errado de imprimir um pilha, pois não se adequa a lógica de desempilhar um pilha
+/* Esse é a forma errada de imprimir um pilha, pois não se adequa a lógica de desempilhar um pilha
 void listaPilha(TP_PILHA pointerPilha){
 	if(pointerPilha.topo == -1){
 		printf("Is empty!\n");
