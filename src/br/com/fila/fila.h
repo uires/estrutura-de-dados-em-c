@@ -4,7 +4,7 @@
 *	Estrutura de dados FILA (FIFO- First In First Out)
 */
 
-
+#include <stdio.h>
 
 #define MAX 10
 
@@ -105,6 +105,7 @@ int deQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
 	}
 }
 
+
 int imprimirFila(TP_FILA copiaFila){
 	TP_ITEM valorRemovido;
 	if(isEmpty(&copiaFila) == 1){
@@ -120,13 +121,16 @@ int imprimirFila(TP_FILA copiaFila){
 }
 
 
-
 void retornaFimIni(TP_FILA * pointerFilaCircular){
 	printf("FIM = %d\n INI = %d", pointerFilaCircular->fim, pointerFilaCircular->ini);
 }
+/*
+Dada uma fila circular alocada sobre um vetor DADOS[6], faça um algoritmo que leia 15 números inteiros e proceda, para cada um deles, como segue:
+se o número for par, insira-o na fila; se estiver cheia, retire um elemento da fila e insira o número lido
+se o número lido for ímpar, retire um número da fila; se estiver vazia, mostre uma mensagem
+Ao final, esvazie a fila imprimindo os elementos.
 
-
-
+*/
 
 void filaControl(TP_FILA * pointerFilaCircular){
 	int valorLido, contador = 0;

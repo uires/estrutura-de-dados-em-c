@@ -1,4 +1,5 @@
-#define MAX 100
+#define MAX 10
+#include <stdio.h>
 // Definição de uma tipagem de dado prorpio, do tipo primitivo integer
 typedef int tp_item;
 
