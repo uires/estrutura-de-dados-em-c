@@ -20,18 +20,19 @@ void posicioesFilaIniFim(TP_FILA fila){
 }
 
 /*
-*	
-*
-*
+Incializa as duas variáveis de controle FIM(fim da fila) e INI
+(inicio da fila) com MAX - 1;
 */
 void inicializaFila(TP_FILA * pointerFila){
 	pointerFila->ini = MAX - 1;
 	pointerFila->fim = MAX - 1;
 }
 /*
-*	
-*
-*
+Verifica se fim e ini são iguais, caso seja retorne 1
+significa que a fila está vázia, 
+
+
+
 */
 int isEmpty(TP_FILA * pointerFila){
 	if(pointerFila->ini == pointerFila->fim){
@@ -46,12 +47,19 @@ int isEmpty(TP_FILA * pointerFila){
 *
 */
 int proximo(int posicao){
+	/*
+	Uma lógica para uma fila circular, caso a constante MAX - 1
+	seja iguais a (9) ou seja final do espaço físico do vetor, 
+	irá retornar (0), ou seja a primeira aloção desse vetor,
+	assim tornando a fila (array) circular;
+	*/
 	if(posicao == MAX - 1){
 		return 0;
 	}else{
 		return posicao + 1;
 	}
 }
+
 /*
 
 Essa função utiliza-se da função proximo, caso fim + 1, 
@@ -73,7 +81,7 @@ int isFull(TP_FILA * pointerFila){
 /*
 Insere um valor na fila, caso ela não retorn 1 em isFull()
 */
-int deQueue(TP_FILA * pointerFila, int value){
+int enQueue(TP_FILA * pointerFila, int value){
 	if(isFull(pointerFila) == 1){
 		return 0;
 	}else{
@@ -87,7 +95,7 @@ int deQueue(TP_FILA * pointerFila, int value){
 * Retira um elemento da fila
 *
 */
-int enQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
+int deQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
 	if(isEmpty(pointerFila) == 1){
 		return 0;
 	}else{
@@ -100,6 +108,7 @@ int enQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
 int imprimirFila(TP_FILA copiaFila){
 	TP_ITEM valorRemovido;
 	if(isEmpty(&copiaFila) == 1){
+		
 		return 0;
 	}else{
 		while(!isEmpty(&copiaFila)){
@@ -112,7 +121,9 @@ int imprimirFila(TP_FILA copiaFila){
 
 
 
-
+void retornaFimIni(TP_FILA * pointerFilaCircular){
+	printf("FIM = %d\n INI = %d", pointerFilaCircular->fim, pointerFilaCircular->ini);
+}
 
 
 
@@ -126,13 +137,13 @@ void filaControl(TP_FILA * pointerFilaCircular){
 		if(valorLido % 2 == 0){
 			if(isFull(pointerFilaCircular) == 1){
 				printf("Entrou no isFull() == 1\n");
-				enQueue(pointerFilaCircular, &x);
-				deQueue(pointerFilaCircular, valorLido);
+				deQueue(pointerFilaCircular, &x);
+				enQueue(pointerFilaCircular, valorLido);
 				retornaFimIni(pointerFilaCircular);
 				printf("\n");
 			}else{
 				printf("Entrou no else quando eh par!\n");
-				deQueue(pointerFilaCircular, valorLido);
+				enQueue(pointerFilaCircular, valorLido);
 				retornaFimIni(pointerFilaCircular);
 				printf("\n");
 			}
@@ -142,7 +153,7 @@ void filaControl(TP_FILA * pointerFilaCircular){
 				
 			}else{
 				printf("Retirou um elemento impa!\n");
-				enQueue(pointerFilaCircular, &x);
+				deQueue(pointerFilaCircular, &x);
 				retornaFimIni(pointerFilaCircular);
 				printf("\n");
 			}
@@ -150,7 +161,7 @@ void filaControl(TP_FILA * pointerFilaCircular){
 		contador++;
 	}
 	while(!isEmpty(pointerFilaCircular)){
-		enQueue(pointerFilaCircular, &x);
+		deQueue(pointerFilaCircular, &x);
 		printf("Valor removido= %d\n", x);
 	}
 }
