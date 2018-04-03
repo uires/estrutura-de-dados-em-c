@@ -53,9 +53,15 @@ int proximo(int posicao){
 	}
 }
 /*
-*	
-*
-*
+
+Essa função utiliza-se da função proximo, caso fim + 1, 
+seja igual a ini significa que a fila está cheia, pois
+com o método de fila circular, há a necessidade de sacrificar
+um índice do vetor, pois se não a array irá acessar uma
+alocação (mantiça da memória) acima do alocado para  a mesma,
+dessa forma com o método de sacrificar um índice não há esse 
+problema. 
+
 */
 int isFull(TP_FILA * pointerFila){
 	if(proximo(pointerFila->fim) == pointerFila->ini){
@@ -65,9 +71,7 @@ int isFull(TP_FILA * pointerFila){
 	}
 }
 /*
-*	
-*
-*
+Insere um valor na fila, caso ela não retorn 1 em isFull()
 */
 int deQueue(TP_FILA * pointerFila, int value){
 	if(isFull(pointerFila) == 1){
