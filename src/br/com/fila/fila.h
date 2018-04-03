@@ -169,3 +169,62 @@ void filaControl(TP_FILA * pointerFilaCircular){
 		printf("Valor removido= %d\n", x);
 	}
 }
+/*
+Construa um programa que forneça o maior, o menor e a média aritmética dos elementos de uma fila circular,
+considerando implementação de filas em vetor.
+*/
+
+
+int filaCircularMediaElementos(TP_FILA pointerFilaCircular){
+	TP_ITEM valorRetiradaFila;
+	int menorValor, maiorValor;
+	int contadorTotal = 0;
+	int valorMedia = 0;
+	float resultadoFinalMedia;
+	if(isEmpty(&pointerFilaCircular) == 1){
+		return 0;
+	}else{
+		while(!isEmpty(&pointerFilaCircular)){
+			deQueue(&pointerFilaCircular, &valorRetiradaFila);
+			
+			if(contadorTotal == 1){
+				menorValor = valorRetiradaFila;
+				maiorValor = valorRetiradaFila;
+			}else{
+				if(valorRetiradaFila < menorValor){
+					menorValor = valorRetiradaFila;
+				}
+				if(valorRetiradaFila > maiorValor){
+					maiorValor = valorRetiradaFila;
+				}
+			}
+			valorMedia += valorRetiradaFila;
+			contadorTotal++;
+		}
+		printf("O menor valor é: %d\n", menorValor);
+		printf("O maior valor é: %d\n", maiorValor);
+		resultadoFinalMedia = (float) valorMedia / contadorTotal;
+		printf("A média aritmética dos elementos é: %.2f\n", resultadoFinalMedia);
+		
+	}
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

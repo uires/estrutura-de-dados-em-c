@@ -4,7 +4,7 @@
 
 int main(){
 	setlocale(LC_ALL, "portuguese");
-	TP_FILA primeiraFila;
+/*	TP_FILA primeiraFila;
 	int e;
 	inicializaFila(&primeiraFila);
 	//posicioesFilaIniFim(primeiraFila);
@@ -22,6 +22,21 @@ int main(){
 		imprimirFila(primeiraFila);
 	}
 		
+*/
+	
+	TP_FILA fila;
+	inicializaFila(&fila);
+	enQueue(&fila, 10);
+	enQueue(&fila, 5);
+	enQueue(&fila, 3);
+	enQueue(&fila, 2);
+	enQueue(&fila, 9);
+	enQueue(&fila, 55);
+	enQueue(&fila, 2);
+	
+	filaCircularMediaElementos(fila);
+	
+
 
 	return 0;
 }
