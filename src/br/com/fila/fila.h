@@ -69,7 +69,7 @@ int isFull(TP_FILA * pointerFila){
 *
 *
 */
-int enQueue(TP_FILA * pointerFila, int value){
+int deQueue(TP_FILA * pointerFila, int value){
 	if(isFull(pointerFila) == 1){
 		return 0;
 	}else{
@@ -80,10 +80,10 @@ int enQueue(TP_FILA * pointerFila, int value){
 }
 /*
 *	
-*
+* Retira um elemento da fila
 *
 */
-int deQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
+int enQueue(TP_FILA * pointerFila, TP_ITEM * removeValue){
 	if(isEmpty(pointerFila) == 1){
 		return 0;
 	}else{
@@ -98,11 +98,55 @@ int imprimirFila(TP_FILA copiaFila){
 	if(isEmpty(&copiaFila) == 1){
 		return 0;
 	}else{
-		printf("else\n");
 		while(!isEmpty(&copiaFila)){
 			deQueue(&copiaFila, &valorRemovido);
 			printf("FIFO Value= %d \n", valorRemovido);
 		}
 		return 1;
+	}
+}
+
+
+
+
+
+
+
+
+void filaControl(TP_FILA * pointerFilaCircular){
+	int valorLido, contador = 0;
+	TP_ITEM x;
+	while(contador < 15){
+		printf("Digite um valor inteiro: \n");
+		scanf("%d", &valorLido);
+		if(valorLido % 2 == 0){
+			if(isFull(pointerFilaCircular) == 1){
+				printf("Entrou no isFull() == 1\n");
+				enQueue(pointerFilaCircular, &x);
+				deQueue(pointerFilaCircular, valorLido);
+				retornaFimIni(pointerFilaCircular);
+				printf("\n");
+			}else{
+				printf("Entrou no else quando eh par!\n");
+				deQueue(pointerFilaCircular, valorLido);
+				retornaFimIni(pointerFilaCircular);
+				printf("\n");
+			}
+		}else{
+			if(isEmpty(pointerFilaCircular) == 1){
+				printf("A fila está vázia!\n");
+				
+			}else{
+				printf("Retirou um elemento impa!\n");
+				enQueue(pointerFilaCircular, &x);
+				retornaFimIni(pointerFilaCircular);
+				printf("\n");
+			}
+		}
+		contador++;
+	}
+	while(!isEmpty(pointerFilaCircular)){
+		enQueue(pointerFilaCircular, &x);
+		printf("Valor removido= %d\n", x);
 	}
 }
