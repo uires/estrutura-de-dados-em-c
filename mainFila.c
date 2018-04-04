@@ -4,6 +4,7 @@
 
 int main(){
 	setlocale(LC_ALL, "portuguese");
+	
 /*	TP_FILA primeiraFila;
 	int e;
 	inicializaFila(&primeiraFila);
@@ -24,6 +25,7 @@ int main(){
 		
 */
 	
+/*	Exercício Dois
 	TP_FILA fila;
 	inicializaFila(&fila);
 	enQueue(&fila, 10);
@@ -35,7 +37,7 @@ int main(){
 	enQueue(&fila, 2);
 	
 	filaCircularMediaElementos(fila);
-	
+*/	
 
 
 	return 0;

@@ -225,7 +225,7 @@ typedef struct{
 }TP_FILA_CHAR;
 
 int deQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char * valorRemovido){
-	if(isEmpty(pointerFilaCircularChar) == 1){
+	if(isEmptyChar(pointerFilaCircularChar) == 1){
 		return 0;
 	}else{
 		pointerFilaCircularChar->ini = proximo(pointerFilaCircularChar->ini);
@@ -235,7 +235,7 @@ int deQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char * valorRemovido){
 }
 
 int enQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char value){
-	if(isFull(pointerFilaCircularChar) == 1){
+	if(isFullChar(pointerFilaCircularChar) == 1){
 		return 0;
 	}else{
 		pointerFilaCircularChar->fim = proximo(pointerFilaCircularChar->fim);
@@ -244,53 +244,79 @@ int enQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char value){
 	}
 }
 
+int isEmptyChar(TP_FILA_CHAR * pointerFilaCircularChar){
+	if(pointerFilaCircularChar->fim == pointerFilaCircularChar->ini){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+int isFullChar(TP_FILA_CHAR * pointerFilaCircularChar){
+	if(proximo(pointerFilaCircularChar->fim) == pointerFilaCircularChar->ini){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+void incializaFilaChar(TP_FILA_CHAR * pointerFilaCircularChar){
+	pointerFilaCircularChar->fim = MAXCHAR - 1;
+	pointerFilaCircularChar->ini = MAXCHAR - 1;
+	
+}
+
+
+/*
+	@uthor 2018-04-04 13:08
+	
+*/
 
 int vargaoTrem(TP_FILA_CHAR * pointerFilaCircularChar){
 	TP_FILA_CHAR filaAuxiliarA;
 	TP_FILA_CHAR filaAuxiliarB;
 	TP_FILA_CHAR filaAuxiliarC;
-	inicializaFila(&filaAuxiliarA);
-	inicializaFila(&filaAuxiliarB);
-	inicializaFila(&filaAuxiliarC);
+	incializaFilaChar(&filaAuxiliarA);
+	incializaFilaChar(&filaAuxiliarB);
+	incializaFilaChar(&filaAuxiliarC);
 	
 	char valorRemovido;
-	if(isEmpty(pointerFilaCircularChar) == 1){
+	if(isEmptyChar(pointerFilaCircularChar) == 1){
 		return 0;
 	}else{
-		while(!isEmpty(pointerFilaCircularChar)){
+		while(!isEmptyChar(pointerFilaCircularChar)){
 			deQuereChar(pointerFilaCircularChar, &valorRemovido);
 			if(valorRemovido == 'A' || valorRemovido == 'a'){
-				if(isFull(&filaAuxiliarA) == 1 ){
+				if(isFullChar(&filaAuxiliarA) == 1 ){
 					continue;
 				}else{
 					enQuereChar(&filaAuxiliarA, valorRemovido);
 				}
 			}
 			if(valorRemovido == 'B' || valorRemovido == 'b'){
-				if(isFull(&filaAuxiliarB) == 1 ){
+				if(isFullChar(&filaAuxiliarB) == 1 ){
 					continue;
 				}else{
 					enQuereChar(&filaAuxiliarB, valorRemovido);
 				}
 			}
 			if(valorRemovido == 'C' || valorRemovido == 'c'){
-				if(isFull(&filaAuxiliarC) == 1 ){
+				if(isFullChar(&filaAuxiliarC) == 1 ){
 					continue;
 				}else{
 					enQuereChar(&filaAuxiliarC, valorRemovido);
 				}
 			}
 		}
-		while(!isEmpty(&filaAuxiliarA) && !isEmpty(&filaAuxiliarB) && !isEmpty(&filaAuxiliarC)){
-			while(!isEmpty(&filaAuxiliarA)){
+		while(!isEmptyChar(&filaAuxiliarA) && !isEmptyChar(&filaAuxiliarB) && !isEmptyChar(&filaAuxiliarC)){
+			while(!isEmptyChar(&filaAuxiliarA)){
 				deQuereChar(&filaAuxiliarA, &valorRemovido);
 				enQuereChar(pointerFilaCircularChar, valorRemovido);
 			}
-			while(!isEmpty(&filaAuxiliarB)){
+			while(!isEmptyChar(&filaAuxiliarB)){
 				deQuereChar(&filaAuxiliarB, &valorRemovido);
 				enQuereChar(pointerFilaCircularChar, valorRemovido);
 			}
-			while(!isEmpty(&filaAuxiliarC)){
+			while(!isEmptyChar(&filaAuxiliarC)){
 				deQuereChar(&filaAuxiliarC, &valorRemovido);
 				enQuereChar(pointerFilaCircularChar, valorRemovido);
 			}

@@ -1,14 +1,9 @@
 #define MAX 10
 
 /*
-
-
 	@uthor uíres
-	2018-03-21  15:09
-
-
+	2018-03-21  
 */
-
 
 
 typedef char char_tipo;
@@ -22,8 +17,8 @@ void inicializa_pilha(TP_PILHA_CHAR * p){
 	p->topo = -1;
 }
 int pop(TP_PILHA_CHAR * p, int * e){
-	if(isEmpty(p)){
-		printf("A pilha estÃ¡ vÃ¡zia!\n");
+	if(isEmpty(p) == 1){
+		return 0;
 	}else{
 		*e = p->item[p->topo];
 		p->topo--;
@@ -58,8 +53,6 @@ int isFull(TP_PILHA_CHAR  * pointerPilha){
 *	@uthor uíres
 *	date 2018-03-18
 *	
-*	Essa função recebe uma struct como parâmetro e uma string onde deve conter um expressão polonesa Reversa
-*	Com isso a utilização de pilha para empurrar os dados e realizar a lógica de operação polonesa
 *
 */
 
