@@ -4,9 +4,10 @@
 *	Estrutura de dados FILA (FIFO- First In First Out)
 */
 
-#include <stdio.h>
+
 
 #define MAX 10
+#define MAXCHAR 200
 
 typedef int TP_ITEM;
 typedef struct{
@@ -187,7 +188,7 @@ int filaCircularMediaElementos(TP_FILA pointerFilaCircular){
 		while(!isEmpty(&pointerFilaCircular)){
 			deQueue(&pointerFilaCircular, &valorRetiradaFila);
 			
-			if(contadorTotal == 1){
+			if(contadorTotal == 0){
 				menorValor = valorRetiradaFila;
 				maiorValor = valorRetiradaFila;
 			}else{
@@ -205,13 +206,98 @@ int filaCircularMediaElementos(TP_FILA pointerFilaCircular){
 		printf("O maior valor é: %d\n", maiorValor);
 		resultadoFinalMedia = (float) valorMedia / contadorTotal;
 		printf("A média aritmética dos elementos é: %.2f\n", resultadoFinalMedia);
-		
 	}
 	
 }
 
+/*
+Considere a operação de organização de um trem onde os vagões transportam três tipos de cargas A, B e C.
+O objetivo do programa de controle a ser projetado é montar um comboio com os vagões organizados por tipo
+de carga, agrupando aqueles do mesmo tipo, utilizando para isso um desvio da linha férrea como mostrado na 
+figura seguir. Após a atuação do sistema, partindo da situação inicial (a), o trem terá os vagões organizados
+como a situação final (c). Uma das situações intermediárias durante o processo é mostrada na figura (b). 
+*/
+
+typedef struct{
+	char fila[MAXCHAR];
+	int fim;
+	int ini;
+}TP_FILA_CHAR;
+
+int deQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char * valorRemovido){
+	if(isEmpty(pointerFilaCircularChar) == 1){
+		return 0;
+	}else{
+		pointerFilaCircularChar->ini = proximo(pointerFilaCircularChar->ini);
+		*valorRemovido = pointerFilaCircularChar->fila[pointerFilaCircularChar->ini];
+		return 1;
+	}
+}
+
+int enQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char value){
+	if(isFull(pointerFilaCircularChar) == 1){
+		return 0;
+	}else{
+		pointerFilaCircularChar->fim = proximo(pointerFilaCircularChar->fim);
+		pointerFilaCircularChar->fila[pointerFilaCircularChar->fim] = value;
+		return 1;
+	}
+}
 
 
+int vargaoTrem(TP_FILA_CHAR * pointerFilaCircularChar){
+	TP_FILA_CHAR filaAuxiliarA;
+	TP_FILA_CHAR filaAuxiliarB;
+	TP_FILA_CHAR filaAuxiliarC;
+	inicializaFila(&filaAuxiliarA);
+	inicializaFila(&filaAuxiliarB);
+	inicializaFila(&filaAuxiliarC);
+	
+	char valorRemovido;
+	if(isEmpty(pointerFilaCircularChar) == 1){
+		return 0;
+	}else{
+		while(!isEmpty(pointerFilaCircularChar)){
+			deQuereChar(pointerFilaCircularChar, &valorRemovido);
+			if(valorRemovido == 'A' || valorRemovido == 'a'){
+				if(isFull(&filaAuxiliarA) == 1 ){
+					continue;
+				}else{
+					enQuereChar(&filaAuxiliarA, valorRemovido);
+				}
+			}
+			if(valorRemovido == 'B' || valorRemovido == 'b'){
+				if(isFull(&filaAuxiliarB) == 1 ){
+					continue;
+				}else{
+					enQuereChar(&filaAuxiliarB, valorRemovido);
+				}
+			}
+			if(valorRemovido == 'C' || valorRemovido == 'c'){
+				if(isFull(&filaAuxiliarC) == 1 ){
+					continue;
+				}else{
+					enQuereChar(&filaAuxiliarC, valorRemovido);
+				}
+			}
+		}
+		while(!isEmpty(&filaAuxiliarA) && !isEmpty(&filaAuxiliarB) && !isEmpty(&filaAuxiliarC)){
+			while(!isEmpty(&filaAuxiliarA)){
+				deQuereChar(&filaAuxiliarA, &valorRemovido);
+				enQuereChar(pointerFilaCircularChar, valorRemovido);
+			}
+			while(!isEmpty(&filaAuxiliarB)){
+				deQuereChar(&filaAuxiliarB, &valorRemovido);
+				enQuereChar(pointerFilaCircularChar, valorRemovido);
+			}
+			while(!isEmpty(&filaAuxiliarC)){
+				deQuereChar(&filaAuxiliarC, &valorRemovido);
+				enQuereChar(pointerFilaCircularChar, valorRemovido);
+			}
+		}
+	}
+	return 1;
+}
 
 
 
