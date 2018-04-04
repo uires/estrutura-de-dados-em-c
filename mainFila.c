@@ -38,7 +38,28 @@ int main(){
 	
 	filaCircularMediaElementos(fila);
 */	
+	TP_FILA_CHAR filaCharVargao;
+	incializaFilaChar(&filaCharVargao);
+	enQuereChar(&filaCharVargao, 'B');
+	enQuereChar(&filaCharVargao, 'A');
+	enQuereChar(&filaCharVargao, 'A');
+	enQuereChar(&filaCharVargao, 'C');
+	enQuereChar(&filaCharVargao, 'B');
+	enQuereChar(&filaCharVargao, 'C');
+	enQuereChar(&filaCharVargao, 'C');
+	enQuereChar(&filaCharVargao, 'B');
+	enQuereChar(&filaCharVargao, 'B');
+	enQuereChar(&filaCharVargao, 'B');
+	enQuereChar(&filaCharVargao, 'C');
+	enQuereChar(&filaCharVargao, 'A');
+	
+	imprimiFilaChar(filaCharVargao);
+	
 
+
+	vargaoTremOrdemCarga(&filaCharVargao);
+	printf("PIUUUUUUUUUUUUUUUUUU IIIIIIIIIIIIIIIIIIIIIIIIIIIIII!\n-----------------------------------------------\n");
+	imprimiFilaChar(filaCharVargao);
 
 	return 0;
 }

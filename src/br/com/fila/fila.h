@@ -228,7 +228,7 @@ int deQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char * valorRemovido){
 	if(isEmptyChar(pointerFilaCircularChar) == 1){
 		return 0;
 	}else{
-		pointerFilaCircularChar->ini = proximo(pointerFilaCircularChar->ini);
+		pointerFilaCircularChar->ini = proximoChar(pointerFilaCircularChar->ini);
 		*valorRemovido = pointerFilaCircularChar->fila[pointerFilaCircularChar->ini];
 		return 1;
 	}
@@ -238,7 +238,7 @@ int enQuereChar(TP_FILA_CHAR * pointerFilaCircularChar, char value){
 	if(isFullChar(pointerFilaCircularChar) == 1){
 		return 0;
 	}else{
-		pointerFilaCircularChar->fim = proximo(pointerFilaCircularChar->fim);
+		pointerFilaCircularChar->fim = proximoChar(pointerFilaCircularChar->fim);
 		pointerFilaCircularChar->fila[pointerFilaCircularChar->fim] = value;
 		return 1;
 	}
@@ -252,7 +252,7 @@ int isEmptyChar(TP_FILA_CHAR * pointerFilaCircularChar){
 	}
 }
 int isFullChar(TP_FILA_CHAR * pointerFilaCircularChar){
-	if(proximo(pointerFilaCircularChar->fim) == pointerFilaCircularChar->ini){
+	if(proximoChar(pointerFilaCircularChar->fim) == pointerFilaCircularChar->ini){
 		return 1;
 	}else{
 		return 0;
@@ -265,13 +265,20 @@ void incializaFilaChar(TP_FILA_CHAR * pointerFilaCircularChar){
 	
 }
 
+int proximoChar(int posicao){
+	if(posicao == MAXCHAR - 1){
+		return 0;
+	}else{
+		return posicao + 1;
+	}
+}
 
 /*
 	@uthor 2018-04-04 13:08
 	
 */
 
-int vargaoTrem(TP_FILA_CHAR * pointerFilaCircularChar){
+int vargaoTremOrdemCarga(TP_FILA_CHAR * pointerFilaCircularChar){
 	TP_FILA_CHAR filaAuxiliarA;
 	TP_FILA_CHAR filaAuxiliarB;
 	TP_FILA_CHAR filaAuxiliarC;
@@ -323,6 +330,18 @@ int vargaoTrem(TP_FILA_CHAR * pointerFilaCircularChar){
 		}
 	}
 	return 1;
+}
+int imprimiFilaChar(TP_FILA_CHAR copiaFilaChar){
+	char valorRetiraChar;
+	if(isEmptyChar(&copiaFilaChar) == 1){
+		return 0;
+	}else{
+		while(!isEmptyChar(&copiaFilaChar)){
+			deQuereChar(&copiaFilaChar, &valorRetiraChar);
+			printf("char = %c\n", valorRetiraChar);
+		}
+		return 1;
+	}
 }
 
 
