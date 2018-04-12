@@ -65,43 +65,32 @@ void notacaoPolonesa(TP_PILHA_CHAR * pointerPilha, char string[10]){
 	int contador = strlen(string);
 	int convertUm, result;
 	while(cont < contador){
-		printf("cont = %d, value array char = %c\n", cont, string[cont]);
 		if((string[cont] == '*') || (string[cont] == '/') || (string[cont] == '+') || (string[cont] == '-')){
 			pop(pointerPilha, &y);
 			pop(pointerPilha, &x);
-			printf("pop = %d -- %d\n", x, y);
 			switch(string[cont]){
 				case '*':
-					printf(" valor x e y = %d    %d\n\n",x, y );
 					result = x * y;
-					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '/':
-					printf(" valor x e y = %d    %d\n\n",x, y );
 					result = x / y;
-					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '+':
-					printf(" valor x e y = %d    %d\n\n",x, y );
 					result = x  + y;
-					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					
 					break;
 				case '-':
-					printf(" valor x e y = %d    %d\n\n",x, y );
 					result = x - y;
-					printf("result = %d\n", result);
 					push(pointerPilha, result);
 					break;					
 			}
 		}else{
 			e = string[cont];
-			
 			convertUm = (int) e - 48;
 			printf(" Valor convertido...: %d\n", convertUm);
 			push(pointerPilha, convertUm);			
