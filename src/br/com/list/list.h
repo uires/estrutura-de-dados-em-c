@@ -52,13 +52,13 @@ int addListaElemento(TP_LISTA  **listaMainPonteiro, int valorASerInseridoNaLista
 		return 0;
 	}else{
 		novoNoLista->informacaoDaLista = valorASerInseridoNaLista;
-		novoNoLista->proximoElementoDaLista = retornaPonteiroNulo();
-		if(*listaMainPonteiro == NULL){
+		novoNoLista->proximoElementoDaLista = NULL;
+		if(isEmptyLista(*listaMainPonteiro) == 1){
 			*listaMainPonteiro = novoNoLista;
 			return 1;
 		}else{
 			ponteiroAuxiliar = *listaMainPonteiro;
-			while(ponteiroAuxiliar != NULL){
+			while(ponteiroAuxiliar->proximoElementoDaLista != NULL){
 				ponteiroAuxiliar = ponteiroAuxiliar->proximoElementoDaLista;
 			}
 			ponteiroAuxiliar->proximoElementoDaLista = novoNoLista;
@@ -66,7 +66,25 @@ int addListaElemento(TP_LISTA  **listaMainPonteiro, int valorASerInseridoNaLista
 		return 1;
 	}
 }
+/*
+*	@desc: imprimi na tela os valores dos nós da lista
+*	@param ponteiro do tipo TP_LISTA
+*	return 1 ou 0
+*/
 
+int imprimirListaEnceadea(TP_LISTA *ponteiroLista){
+		if( isEmptyLista(ponteiroLista)  == 1){
+			return 0;
+		}else{
+			TP_LISTA * ponteiroAuxiliarLista;
+			ponteiroAuxiliarLista = ponteiroLista;
+			while(ponteiroAuxiliarLista != NULL){
+				printf("=>: %d\n", ponteiroAuxiliarLista->informacaoDaLista);
+				ponteiroAuxiliarLista= ponteiroAuxiliarLista->proximoElementoDaLista;
+			}
+		}
+		return 1;
+}
 
 
 
