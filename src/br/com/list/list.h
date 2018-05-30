@@ -73,19 +73,45 @@ int addListaElemento(TP_LISTA  **listaMainPonteiro, int valorASerInseridoNaLista
 */
 
 int imprimirListaEnceadea(TP_LISTA *ponteiroLista){
-		if( isEmptyLista(ponteiroLista)  == 1){
+	if( isEmptyLista(ponteiroLista)  == 1){
+		return 0;
+	}else{
+		TP_LISTA * ponteiroAuxiliarLista;
+		ponteiroAuxiliarLista = ponteiroLista;
+		while(ponteiroAuxiliarLista != NULL){
+			printf("=>: %d\n", ponteiroAuxiliarLista->informacaoDaLista);
+			ponteiroAuxiliarLista= ponteiroAuxiliarLista->proximoElementoDaLista;
+		}
+	}
+	return 1;
+}
+/*
+*	@desc: 
+*	TOFIX
+*
+*/
+int removeListaElemento(TP **listaMainPonteiro, int informacaoAserRemovida){
+	if(isEmptyLista(*listaMainPonteiro) == 1){
+		printf("Lista vázia!\n");
+		return 0;
+	}else{
+		TP_LISTA * ponteiroAuxiliar;
+		ponteiroAuxiliar = *listaMainPonteiro, *ponteiroAnteriorLista;
+		while((ponteiroAuxiliar->proximoElementoDaLista != NULL) && (ponteiroAuxiliar->informacaoDaLista != informacaoAserRemovida)){
+			ponteiroAnteriorLista = ponteiroAuxiliar;
+			ponteiroAuxiliar = ponteiroAuxiliar->proximoElementoDaLista;
+		}
+		if(ponteiroAuxiliar->proximoElementoDaLista == NULL){
+			printf("Elemento não encontrado na lista!\n");
 			return 0;
 		}else{
-			TP_LISTA * ponteiroAuxiliarLista;
-			ponteiroAuxiliarLista = ponteiroLista;
-			while(ponteiroAuxiliarLista != NULL){
-				printf("=>: %d\n", ponteiroAuxiliarLista->informacaoDaLista);
-				ponteiroAuxiliarLista= ponteiroAuxiliarLista->proximoElementoDaLista;
+			if(ponteiroAnteriorLista == NULL){
+				ponteiroAuxiliar = proximoElementoDaLista->;
 			}
+			
 		}
-		return 1;
+	}
 }
-
 
 
 
