@@ -12,8 +12,16 @@ int main(){
 	addListaElemento(&lista, 3);
 	addListaElemento(&lista, 2);
 	addListaElemento(&lista, 10);
+	
 	imprimirListaEnceadea(lista);
 	
+	removeListaElemento(&lista, 2);
+	removeListaElemento(&lista, 10);
+	removeListaElemento(&lista, 29);
+	removeListaElemento(&lista, 3);
+	removeListaElemento(&lista, 0);
+	printf("------------------------------\n");
+	imprimirListaEnceadea(lista);
 	
 	
 	
