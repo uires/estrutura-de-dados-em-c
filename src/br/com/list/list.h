@@ -89,7 +89,6 @@ int imprimirListaEnceadea(TP_LISTA *ponteiroLista){
 *	@desc: Remove um nó da lista
 *	@param ponteiroListaOrigem, elemento a ser pesquisado
 *	return 0(não removido) ou não zero == removido
-*
 */
 
 /*	De longe a mais complicada função */
@@ -136,8 +135,28 @@ int removeListaElemento(TP_LISTA **listaMainPonteiro, int informacaoAserRemovida
 		return 1;
 	}
 }
-
-
+/*
+*	@desc: Limpa uma lista, destruindo todos os nós, disponiblizando assim a memória para o SO
+*	@param ( )
+*	@return
+*
+*/
+int destroyLista(TP_LISTA **ponteiroListaMain){
+	if(isEmptyLista(*ponteiroListaMain) == 1){
+		printf("Lista vázia!\n");
+		return 0;
+	}else{
+		TP_LISTA * pointeiroAuxiliar, *ponteiroPostumo;
+		pointeiroAuxiliar = *ponteiroListaMain;
+		while(pointeiroAuxiliar != NULL){
+			ponteiroPostumo = pointeiroAuxiliar->proximoElementoDaLista;
+			free(pointeiroAuxiliar);
+			pointeiroAuxiliar = ponteiroPostumo;
+		}
+		*ponteiroListaMain = NULL;
+		return 1;
+	}
+}
 
 
 
