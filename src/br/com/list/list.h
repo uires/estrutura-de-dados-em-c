@@ -29,7 +29,7 @@ TP_LISTA * alocacaoDeNovoNo(){
 }
 /*
 *	@desc: verifca se o ponteiro é nulo
-*	@param ponteiro de TP_LISTA
+*	@param ( ponteiro de TP_LISTA )
 *	@return 1 (verdadeiro) ou 0 (falso)
 */
 int isEmptyLista(TP_LISTA * ponteiroLista){
@@ -86,11 +86,14 @@ int imprimirListaEnceadea(TP_LISTA *ponteiroLista){
 	return 1;
 }
 /*
-*	@desc: 
-*	TOFIX
+*	@desc: Remove um nó da lista
+*	@param ponteiroListaOrigem, elemento a ser pesquisado
+*	return 0(não removido) ou não zero == removido
 *
 */
-int removeListaElemento(TP **listaMainPonteiro, int informacaoAserRemovida){
+
+/*	De longe a mais complicada função */
+int removeListaElemento(TP_LISTA **listaMainPonteiro, int informacaoAserRemovida){
 	if(isEmptyLista(*listaMainPonteiro) == 1){
 		printf("Lista vázia!\n");
 		return 0;
@@ -102,15 +105,30 @@ int removeListaElemento(TP **listaMainPonteiro, int informacaoAserRemovida){
 			ponteiroAnteriorLista = ponteiroAuxiliar;
 			ponteiroAuxiliar = ponteiroAuxiliar->proximoElementoDaLista;
 		}
+		/*	o valor informado não foi encontrado na lista */
 		if(ponteiroAuxiliar == NULL){
 			printf("Elemento não encontrado na lista!\n");
 			return 0;
 		}else{
+			/*
+			*	Nesse momento à possiblidade de dois possíveis cenários,
+			*	o primeiro séria que na busca o primeiro elemento
+			*	fosse encontrado, com isso o não não entraria no while sendo assim
+			*	ponteiroAnterior vai estar nulo, então só preciso tratar a atribuição
+			*	o listaMainPonteiro para o próximo nó do ponteiroAuxliar->proximoElementoLista
+				
+			*	E o segundo caso é somente tratar o nó anterior  para que aponte
+			*	para o ponteiroAuxiliar->proximoElemento e por fim limpar da memória
+			*	do ponteiroAuxiliar;
+			*/
 			if(ponteiroAnteriorLista == NULL){
 				*listaMainPonteiro = ponteiroAuxiliar->proximoElementoDaLista;
 			}else{
 				ponteiroAnteriorLista->proximoElementoDaLista = ponteiroAuxiliar->proximoElementoDaLista;
 			}
+			/*
+				Limpa o ponteiro e faz atribui nullo ao mesmo
+			*/
 			free(ponteiroAuxiliar);
 			ponteiroAuxiliar = NULL;
 		}
