@@ -95,21 +95,27 @@ int removeListaElemento(TP **listaMainPonteiro, int informacaoAserRemovida){
 		printf("Lista vázia!\n");
 		return 0;
 	}else{
-		TP_LISTA * ponteiroAuxiliar;
-		ponteiroAuxiliar = *listaMainPonteiro, *ponteiroAnteriorLista;
-		while((ponteiroAuxiliar->proximoElementoDaLista != NULL) && (ponteiroAuxiliar->informacaoDaLista != informacaoAserRemovida)){
+		TP_LISTA * ponteiroAuxiliar, *ponteiroAnteriorLista;
+		ponteiroAnteriorLista = NULL;
+		ponteiroAuxiliar = *listaMainPonteiro;
+		while((ponteiroAuxiliar != NULL) && (ponteiroAuxiliar->informacaoDaLista != informacaoAserRemovida)){
 			ponteiroAnteriorLista = ponteiroAuxiliar;
 			ponteiroAuxiliar = ponteiroAuxiliar->proximoElementoDaLista;
 		}
-		if(ponteiroAuxiliar->proximoElementoDaLista == NULL){
+		if(ponteiroAuxiliar == NULL){
 			printf("Elemento não encontrado na lista!\n");
 			return 0;
 		}else{
 			if(ponteiroAnteriorLista == NULL){
-				ponteiroAuxiliar = proximoElementoDaLista->;
+				*listaMainPonteiro = ponteiroAuxiliar->proximoElementoDaLista;
+			}else{
+				ponteiroAnteriorLista->proximoElementoDaLista = ponteiroAuxiliar->proximoElementoDaLista;
 			}
-			
+			free(ponteiroAuxiliar);
+			ponteiroAuxiliar = NULL;
 		}
+		printf("Elemento retirado com sucesso!\n");
+		return 1;
 	}
 }
 
